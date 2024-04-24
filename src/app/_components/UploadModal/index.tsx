@@ -7,6 +7,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { Dispatch, SetStateAction } from "react";
+import MyDropzone from "../Dropzone";
 
 type UploadModalProps = {
   isOpen: boolean;
@@ -46,9 +47,7 @@ const UploadModal = ({ isOpen, onOpenChange }: UploadModalProps) => {
             <ModalHeader className="flex flex-col gap-1">
               Awesome! Please upload your files below
             </ModalHeader>
-            <ModalBody>
-              <div style={{ border: "1px solid red" }}>Upload form</div>
-            </ModalBody>
+            <MyDropzone />
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
                 Close
