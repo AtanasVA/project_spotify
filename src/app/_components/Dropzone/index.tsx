@@ -1,11 +1,6 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
-const fetchEndpoint = async () => {
-  const res = await fetch("http://localhost:3000/api/get/history");
-  return res.json();
-};
-
 const postEndpoint = async (data: File) => {
   const res = await fetch("http://localhost:3000/api/post/history", {
     method: "POST",

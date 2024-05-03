@@ -4,10 +4,27 @@ import { Card, CardBody } from "@nextui-org/card";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import UploadModal from "../_components/UploadModal";
+import { Input } from "@nextui-org/react";
+
+const fetchEndpoint = async (songName: string, artistName: string) => {
+  const res = await fetch(
+    `http://localhost:3000/api/get/history?track_name=${songName}&artist_name=${artistName}`,
+  );
+  return res.json();
+};
 
 const KingsLanding = () => {
   const router = useRouter();
+  const [songName, setSongName] = useState<string>("");
+  const [artistName, setArtistName] = useState<string>("");
   const [isUploadModalOpen, setIsUploadModalOpen] = useState<boolean>(false);
+
+  const filterBySongName = (input: string) => {
+    setSongName(input);
+  };
+  const filterByArtistName = (input: string) => {
+    setArtistName(input);
+  };
 
   return (
     <>
@@ -29,6 +46,22 @@ const KingsLanding = () => {
             }
           >
             No
+          </Button>
+        </div>
+        <div className="pb-2">
+          <Input onChange={({ target }) => filterByArtistName(target.value)}>
+            Enter artistName
+          </Input>
+          <Input onChange={({ target }) => filterBySongName(target.value)}>
+            Enter Song
+          </Input>
+          <Button
+            onPress={async () => {
+              const response = await fetchEndpoint(songName, artistName);
+              console.log("response", response);
+            }}
+          >
+            Hit get endpoint
           </Button>
         </div>
       </Card>

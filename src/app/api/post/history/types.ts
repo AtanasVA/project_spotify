@@ -9,7 +9,7 @@ export type ReqFileType = {
   master_metadata_track_name: string;
   master_metadata_album_artist_name: string;
   master_metadata_album_album_name: string;
-  spotify_track_uri: string;
+  spotify_track_uri?: string;
   episode_name: string | null;
   episode_show_name: string | null;
   spotify_episode_uri: string | null;
@@ -30,7 +30,7 @@ export type ResFileType = {
   track_name: string;
   artist_name: string;
   album_name: string;
-  track_uri: string;
+  songId: string;
   shuffle: boolean;
   skipped: boolean;
 };
